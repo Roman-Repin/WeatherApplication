@@ -1,9 +1,12 @@
 package com.example.weatherapplication.view.main
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapplication.R
 import com.example.weatherapplication.databinding.ActivityMainBinding
+import com.example.weatherapplication.view.history.HistoryFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,45 +22,26 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, MainFragment.newInstance())
                 .commitAllowingStateLoss()
         }
-
-//        binding.ok.setOnClickListener(clickListener)
     }
 
-    /*@RequiresApi(Build.VERSION_CODES.N)
-    val clickListener: View.OnClickListener = View.OnClickListener {
-        val handler = Handler(Looper.getMainLooper())
-        try {
-            val uri = URL(binding.url.text.toString())
-            Thread {
-                var urlConnection: HttpsURLConnection? = null
-                try {
-                    with(urlConnection) {
-                        urlConnection = uri.openConnection() as HttpsURLConnection
-                        this?.requestMethod = "GET"
-                        this?.connectTimeout = 10000
-                    }
-                    val reader = BufferedReader(InputStreamReader(urlConnection?.inputStream))
-                    val result = getLines(reader)
-                    handler.post() {
-                        binding.webview.loadDataWithBaseURL(null, result, "text/html; charset=utf-8", "utf-8", null)
-                    }
-                } catch (e: Exception) {
-                    Log.e("@@@", "Fail connection", e)
-                    e.printStackTrace()
-                } finally {
-                    urlConnection?.disconnect()
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_history, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_history -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .add(R.id.container, HistoryFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
                 }
-            }.start()
-        } catch (e: MalformedURLException) {
-            Log.e("@@@", "URL exception", e)
-            e.printStackTrace()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
-    }*/
-
-/*    @RequiresApi(Build.VERSION_CODES.N)
-    private fun getLines(reader: BufferedReader): String {
-        return reader.lines().collect(Collectors.joining("\n"))
-    }*/
+    }
 }
 
 

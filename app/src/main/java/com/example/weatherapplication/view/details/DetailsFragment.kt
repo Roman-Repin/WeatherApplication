@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.weatherapplication.R
 import com.example.weatherapplication.databinding.FragmentDetailsBinding
+import com.example.weatherapplication.model.City
 import com.example.weatherapplication.model.Weather
 import com.example.weatherapplication.utils.showSnackBar
 import com.example.weatherapplication.viewmodel.AppState
@@ -52,16 +53,16 @@ class DetailsFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayoutFragmentDetails.root.visibility = View.GONE
                 setWeather(appState.weatherData[0])
             }
             is AppState.Loading -> {
                 binding.mainView.visibility = View.GONE
-                binding.loadingLayout.visibility = View.VISIBLE
+                binding.includedLoadingLayoutFragmentDetails.root.visibility = View.VISIBLE
             }
             is AppState.Error -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayoutFragmentDetails.root.visibility = View.GONE
                 binding.mainView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload),
@@ -76,6 +77,7 @@ class DetailsFragment : Fragment() {
     private fun setWeather(weather: Weather) {
         with(binding) {
             val city = weatherBundle.city
+            saveCity(city, weather)
             cityName.text = city.city
             cityCoordinates.text = String.format(
                 getString(R.string.city_coordinates),
@@ -99,6 +101,20 @@ class DetailsFragment : Fragment() {
             feelsLikeValue.text = weather.feelsLike.toString()
             weatherCondition.text = weather.condition
         }
+    }
+
+    private fun saveCity(
+        city: City,
+        weather: Weather
+    ) {
+        viewModel.saveCityToDB(
+            Weather(
+                city,
+                weather.temperature,
+                weather.feelsLike,
+                weather.condition
+            )
+        )
     }
 
     override fun onDestroyView() {

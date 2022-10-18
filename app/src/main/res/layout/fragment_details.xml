@@ -55,9 +55,9 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/weatherIcon"
-            android:layout_width="@dimen/weather_icon_width"
-            android:layout_height="@dimen/weather_icon_height"
-            android:layout_marginTop="@dimen/margin_15_dp"
+            android:layout_width="128dp"
+            android:layout_height="129dp"
+            android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
@@ -67,7 +67,7 @@
             android:id="@+id/weatherCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/weather_icon_margin"
+            android:layout_marginTop="140dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/weatherIcon"
@@ -118,21 +118,8 @@
             tools:text="-23" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
-        android:id="@+id/loadingLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/purple_200"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="101dp"
-        tools:visibility="visible">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+    <include
+        android:id="@+id/includedLoadingLayoutFragmentDetails"
+        layout="@layout/loading_layout" />
 
 </FrameLayout>

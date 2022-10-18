@@ -1,4 +1,6 @@
-package com.example.weatherapplication.model
+package com.example.weatherapplication.repository
+
+import com.example.weatherapplication.model.Weather
 
 interface Repository {
 
