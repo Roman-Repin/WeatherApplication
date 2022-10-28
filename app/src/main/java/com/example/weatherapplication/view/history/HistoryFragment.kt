@@ -1,9 +1,7 @@
 package com.example.weatherapplication.view.history
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +18,7 @@ class HistoryFragment : Fragment() {
         ViewModelProvider(this).get(HistoryViewModel::class.java) }
 
     private val adapter: HistoryAdapter by lazy { HistoryAdapter() }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +33,12 @@ class HistoryFragment : Fragment() {
         viewModel.historyLiveData.observe(viewLifecycleOwner, Observer {
             renderData(it) })
         viewModel.getAllHistory()
+        setHasOptionsMenu(true)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_history_item).isVisible = false
+        super.onPrepareOptionsMenu(menu)
     }
 
     private fun renderData(appState: AppState) {

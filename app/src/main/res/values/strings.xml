@@ -5,4 +5,5 @@
     <string name="https_geekbrains_ru">https://geekbrains.ru/</string>
     <string name="ok">ok</string>
     <string name="menu_title_history">history</string>
+    <string name="content_provider">Read contacts</string>
 </resources>

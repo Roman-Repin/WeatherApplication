@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapplication.R
 import com.example.weatherapplication.databinding.ActivityMainBinding
+import com.example.weatherapplication.view.details.ContentProviderFragment
 import com.example.weatherapplication.view.history.HistoryFragment
 
 
@@ -30,15 +31,25 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_history -> {
+            R.id.menu_history_item -> {
                 supportFragmentManager.apply {
                     beginTransaction()
-                        .add(R.id.container, HistoryFragment.newInstance())
+                        .replace(R.id.container, HistoryFragment.newInstance())
                         .addToBackStack("")
                         .commitAllowingStateLoss()
                 }
                 true
             }
+            R.id.menu_content_provider -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .replace(R.id.container, ContentProviderFragment.newInstance())
+                        .addToBackStack("")
+                        .commitAllowingStateLoss()
+                }
+                true
+            }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
