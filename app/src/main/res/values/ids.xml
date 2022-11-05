@@ -15,13 +15,6 @@
     <dimen name="weather_icon_height">150dp</dimen>
     <dimen name="weather_icon_margin">20dp</dimen>
     <dimen name="margin_5_dp">5dp</dimen>
-
-
-
-    <string name="app_name">Android With Kotlin</string>
-    <string name="temperature_label">Температура</string>
-    <string name="feels_like_label">Ощущается как</string>
-    <string name="city_coordinates">lt/ln: %s, %s"</string>
 </resources>
 
 

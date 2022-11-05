@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapplication.R
 import com.example.weatherapplication.databinding.ActivityMainBinding
+import com.example.weatherapplication.googlemaps.GoogleMapsFragment
 import com.example.weatherapplication.view.details.ContentProviderFragment
 import com.example.weatherapplication.view.history.HistoryFragment
 
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.menu_history, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_history_item -> {
@@ -50,6 +52,15 @@ class MainActivity : AppCompatActivity() {
                 true
             }
 
+            R.id.menu_google_maps -> {
+                supportFragmentManager.apply {
+                    beginTransaction()
+                        .replace(R.id.container, GoogleMapsFragment())
+                        .addToBackStack("")
+                        .commit()
+                }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
