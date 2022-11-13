@@ -30,4 +30,8 @@
     <string name="city_coordinates">lt/ln: %s, %s"</string>
     <string name="google_maps">GoogleMaps</string>
     <string name="marker_start">Start</string>
+    <string name="push_title_high">TITLE HIGH</string>
+    <string name="push_text_high">TEXT HIGH</string>
+    <string name="push_title_low">TITLE LOW</string>
+    <string name="push_text_low">TEXT LOW</string>
 </resources>
